@@ -1,0 +1,16 @@
+#summary Descripción del Core9
+#labels Featured
+
+= Introducción =
+
+Core9 fue diseñado originalmente para servir como base para aplicaciones web sencillas que usan tecnología Ajax. Durante este tiempo ha ido creciendo un poco y ha servido como base para otros proyectos y aplicaciones, y aunque puede ser usado para montar páginas web estándar se desenvuelve mejor como motor para aplicaciones web.
+
+
+= Funcionamiento =
+
+Core9 está diseñado para dividir la aplicación en diversas partes, a saber:
+  # Módulos
+  # Plantillas
+  # Objetos o Clases
+  # Ejecutadores
+  # Módulos Ajax auxiliares
