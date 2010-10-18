@@ -9,7 +9,7 @@ Core9 fue diseñado originalmente para servir como base para aplicaciones web se
 = Funcionamiento =
 
 Core9 está diseñado para dividir la aplicación en diversas partes, a saber:
-  # [modulos]
+  # [Modulos]
   # Plantillas
   # Objetos o Clases
   # Ejecutadores
