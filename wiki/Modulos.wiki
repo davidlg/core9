@@ -25,7 +25,7 @@ Dentro de estos ficheros podemos definir diferentes funcionalidades según nuest
 
 En un módulo podemos tener varios ficheros a la vez. Así, podríamos crear un fichero */contactos/index.php* para la lista de contactos y */contactos/nuevo.php* para la página de nuevo contacto. Para acceder a estos ficheros adicionales usamos el argumento *accion*. Por ejemplo:
 
-*index.php?mod=contactos&accion=nuevo*
+index.php?mod=contactos&accion=nuevo
 
 Nótese que si no especificamos el argumento *accion* Core9 automáticamente buscará la acción *index*.
 
@@ -33,10 +33,10 @@ Nótese que si no especificamos el argumento *accion* Core9 automáticamente bus
 
 Core9 incluye de serie un fichero .htaccess configurado para convertir las URL del navegador a la sintaxis de *index.php*. De esta forma:
 
-*http://miweb.com/contactos/nuevo* se convertirá automáticamente en *http://miweb.com/index.php?mod=contactos&accion=nuevo*, cosa que queda bastante más elegante.
+http://miweb.com/contactos/nuevo se convertirá automáticamente en http://miweb.com/index.php?mod=contactos&accion=nuevo, cosa que queda bastante más elegante.
 
 Los parámetros adicionales simplemente se asignan detrás de la cadena, así:
 
-*http://miweb.com/contactos/ficha/&id=1* equivale a *http://miweb.com/index.php?mod=contactos&accion=ficha&id=1*.
+http://miweb.com/contactos/ficha/&id=1 equivale a http://miweb.com/index.php?mod=contactos&accion=ficha&id=1.
 
 Recuerda habilitar el *mod_rewrite* en tu configuración de Apache y activar el AllowOverride All en el directorio donde resida tu aplicación Core9 para que funcione correctamente.
