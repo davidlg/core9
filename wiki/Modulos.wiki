@@ -1,5 +1,5 @@
+#summary ¿Qué es un módulo?
 #labels Featured
-#¿Qué es un módulo?
 
 = Introducción =
 
