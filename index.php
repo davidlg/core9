@@ -16,7 +16,7 @@
 */
 require_once('bootstrap.php');
 
-if(!isset($_GET['mod']) || $_GET['mod'] == 'index') $_GET['mod'] = 'mapa';
+if(!isset($_GET['mod']) || $_GET['mod'] == 'index') $_GET['mod'] = 'index';
 
 //Inicializando controlador
 $mod_name= $_GET['mod'].'Controller';

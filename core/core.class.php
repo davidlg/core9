@@ -239,7 +239,6 @@ class Core{
 	* @param string $template Name of the template, without extension
 	*/
 	public function render($template){
-		
 		self::$smarty->display($template.'.tpl');
 	}
 	
