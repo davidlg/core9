@@ -56,11 +56,11 @@ class MySQL{
 	*/
 	public static function mysql(){
 		//Opening MySQL connection.
-		self::$db = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die(mysql_error());
-		mysql_select_db(DB_SCHEME, self::$db) or die(mysql_error());
+		//self::$db = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die(mysql_error());
+		//mysql_select_db(DB_SCHEME, self::$db) or die(mysql_error());
 		
 		//Setting the character set.
-		mysql_query("SET CHARACTER SET '".DB_ENCODING."'", self::$db) or die(mysql_error(self::$db));
+		//mysql_query("SET CHARACTER SET '".DB_ENCODING."'", self::$db) or die(mysql_error(self::$db));
 	}
 	
 	/**

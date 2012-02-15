@@ -58,13 +58,16 @@ foreach($controller_dir as $controller_class){
 */
 require_once('smarty/Smarty.class.php');
 
+//Core initialization
+Core::core();
+
 //Working directory.
 //This directory is defined in config.inc.php.
 if(is_dir(APP_PATH)) chdir(APP_PATH);
-else trigger_error('Core9: Working directory is not defined or incorrect. Please check config/config.inc.php.', E_USER_ERROR);
-
-//Core initialization
-Core::core();
+else{
+	Core::render("index/help");
+	exit();
+}
 
 
 //Configuration
