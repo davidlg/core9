@@ -7,10 +7,10 @@ $server = new soap_server();
 
 $server->configureWSDL(API_NAME, API_URN, API_URL);
 
-//Directorio de extensiones API
+//Path to the API files (check out config/config.inc.php)
 $ar_api = scandir(API_PATH);
 
-//Cargando las extensiones API encontradas en el directorio
+//This loop loads every API file found in the path.
 if(count($ar_api)){
 	foreach($ar_api as $file){
 		$file_ext_length = strlen(API_FILE_EXT);
@@ -20,7 +20,7 @@ if(count($ar_api)){
 	}
 }
 
-//Inicialización del servidor SOAP
+//Initializing the nuSOAP server.
 $HTTP_RAW_POST_DATA = isset($HTTP_RAW_POST_DATA) ? $HTTP_RAW_POST_DATA : '';
 
 $server->service($HTTP_RAW_POST_DATA);
