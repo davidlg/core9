@@ -1,53 +1,63 @@
 <?php
 
 /**
-* Core9 main configuration file.
+* Configuration file for Core9
 *
-* This file defines some constant values and the database connection (defined in the $dbi variable). Important values here are the APP_PATH and APP_URL definitions, which
-* indicates the Core9's core where to lookup for system files and includes.
-* @author Basda <basda@nirvash.org>
-* @version 10.10
+* @author Basda <admin@nirvash.org>
+* @version $Id$
 * @license LGPL
+* @copyright Core9 Project
+* @link http://core9.googlecode.com
 * @package Core9
-* @subpackage Config
-**/
+*/
 
-/**
-* Put here your application's name. If you want this value passed to any Smarty template remind to make the assignment ($core->assign()) in the module controller.
-* @name $app_nombre
-**/
-define('APP_NAME', 'Core9 Test Run');
+/*
+* Application information
+*/
 
-/**
-* Put here your application version. Same as APP_NAME apply.
-* @name $app_version
-**/
-define('APP_VERSION', '10.10 &alpha;');
+define('APP_TITLE', 'Core9');					//Application title (name)
+define('APP_VERSION', '12.02&beta;');				//Current version
 
-/**
-* Physical path to where system files are located.
-* @name $app_path
-**/
-define('APP_PATH', getcwd());
+/*
+* Path to the application
+*/
 
-/**
-* Relative URL to use within the HTML code. This is used to make Apache's mod_rewrite work properly.
-* @name $app_url
-**/
-define('APP_URL', '/Core9');
+define('APP_PATH', '/var/www/core9/');				//Physic path to the files in the server
+define('APP_URL', 'http://myurl.com/');				//URL for access the application from the outside
 
-/**
-* Character encoding to use in database connections (applicable for MySQL at this time).
-* @name $dba_collate
-**/
-define('DBA_COLLATE', 'utf8');
+/*
+* Default controller
+*/
 
-/* MYSQL Connection definition */
-$dbi = array(
-	'host'=>'192.168.1.250',
-	'user'=>'core9',
-	'password'=>'core9',
-	'database'=>'core9'
-);
+define('MOD_DEFAULT', 'index');					//Default controller
+define('ACT_DEFAULT', 'index');					//Default action
+
+/*
+* Database connection (MySQL by default)
+*/
+
+define('DB_HOST', 'myhost');					//Host
+define('DB_USER', 'user');					//User
+define('DB_PASS', 'password');					//Password
+define('DB_SCHEMA', 'schema');					//Schema (database)
+define('DB_ENCODING', 'utf8');					//Encoding (només MySQL)
+
+/*
+* Multi-language support
+*/
+
+define('ENABLE_ML', false);					//Enables or disables multi-language
+define('ML_PATH', getcwd().'/lang');				//Path to the language files
+define('ML_DEFAULT', 'es');					//Default language
+
+/*
+* Webservice configuration
+*/
+
+define('API_PATH', 'api/');					//Path to the webservice files
+define('API_FILE_EXT', '.api.php');				//Default extension for webservice files
+define('API_NAME', 'core9');					//API name
+define('API_URN', 'urn:core9');					//API URN
+define('API_URL', 'http://miurl.com/api.php');			//Path to access the webservice from the outside
 
 ?>

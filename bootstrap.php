@@ -3,52 +3,76 @@
 /**
 * Core9 initialization.
 *
-* This is the file that actually loads the Core and starts pretty much everything. Also, you can put here whatever you want done before the actual page begins loading.
-* @author Basda <basda@nirvash.org>
-* @version 10.10
-* @copyright 2009-2010 Estudio Vakadas
-* @link http://www.vakadas.com
+* This script loads required files and initializes the Core, among other things.
+* @author Basda <admin@nirvash.org>
+* @version $Id: bootstrap.php 224 2011-08-08 06:03:37Z miquelm $
+* @copyright Core9 Project
+* @link http://core9.googlecode.com
 * @license LGPL
 * @package Core9
-* @subpackage Bootstrap
-* @uses $app_path Path to where Core9's files are located. Lookup this definition in config/config.inc.php.
-**/
+* @subpackage Core9
+* @uses APP_PATH Path to where system files are stored.
+*/
 
-//We start the PHP's built-in session manager to store data between page loads
+//Encoding. Default is UTF-8.
+header("Content-type: text/html; charset=utf-8");
+
+//Session initialization
 session_start();
 
-//Turn this off (put it to 0) when your application is in production. It will prevent the E_WARNING level errors to show up in your page.
-//Turn it on when developing and debugging to see the errors.
+//Debugging
+//This value should be 0 in production servers
 ini_set('display_errors', 1);
-
-//Default timezone for date calculation. Change this if you need to.
-date_default_timezone_set('Europe/Madrid');
+date_default_timezone_set("Europe/Madrid");
 
 /**
-* Configuration file. This is where you set up your database connection and some constant variables.
-**/
-require_once("config/config.inc.php");
+* Configuration file. Among other things, here is defined the database connection.
+*/
+require_once('config/config.inc.php');
 
-//Checking if the working directory defined in APP_PATH really exists. If not, we can't continue and we issue a Fatal Error.
-//Note that, as we couldn't locate the working directory, we can't load the Core at this point, thus preventing us to call the Core9 built-in error page.
+/**
+* The Core class set.
+*/
+$core_dir = scandir('core');
+foreach($core_dir as $core_class) if(!is_dir('core/'.$core_class) && substr($core_class, -1, 1) != "~" && substr($core_class, 0, 1) != '.') require_once('core/'.$core_class);
+
+/**
+* The DAO classes set.
+*/
+$class_dir = scandir('class');
+foreach($class_dir as $class) if(!is_dir('class/'.$class) && substr($class, -1, 1) != "~" && substr($class, 0, 1) != '.') require_once('class/'.$class);
+
+/**
+* The Controllers classes.
+*/
+$controller_dir = scandir('controllers');
+foreach($controller_dir as $controller_class){
+	if(!is_dir('controllers/'.$controller_class) && substr($controller_class, -1, 1) != "~" && substr($controller_class, 0, 1) != '.' && substr($controller_class, -7, 7) != "lib.php"){
+		//echo "Activating: ".$controller_class."<br />";
+		require_once('controllers/'.$controller_class);
+	}
+}
+
+/**
+* Smarty.
+*/
+require_once('smarty/Smarty.class.php');
+
+//Working directory.
+//This directory is defined in config.inc.php.
 if(is_dir(APP_PATH)) chdir(APP_PATH);
-else die('CORE9 Bootstrap: Error fatal - La ruta a la aplicación no existe. Revise el fichero config/config.inc.php y ajuste el parámetro APP_PATH.');
+else trigger_error('Core9: Working directory is not defined or incorrect. Please check config/config.inc.php.', E_USER_ERROR);
 
-/**
-* Smarty initialization. As Core9 is built as an Smarty extension we are required to load this _before_ actually loading the Core9's Core.
-**/
-require_once("smarty/Smarty.class.php");
+//Core initialization
+Core::core();
 
-/**
-* Now, this is the real thing. The Core9's Core, heart of the framework. Besides initializing the Smarty engine and doing some set ups, it does some
-* low-level working like error pages and so.
-**/
-require_once("core/core.class.php");
 
-//Creating the -unique- instance of Core.
-$core = new Core();
-
-//Setting up the character encoding to use within our application. I suggest using UTF-8 for best results and better compatibility.
-header("Content-type: text/html; charset=utf-8");
+//Configuration
+Core::assign('APP_PATH', APP_PATH);
+Core::assign('APP_URL', APP_URL);
+Core::assign('APP_TITLE', APP_TITLE);
+Core::assign('APP_VERSION', APP_VERSION);
+Core::assign('MOD_DEFAULT', MOD_DEFAULT);
+Core::assign('ACT_DEFAULT', ACT_DEFAULT);
 
 ?>
