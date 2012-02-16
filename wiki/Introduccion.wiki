@@ -13,12 +13,12 @@ Core9 is a simple framework designed to build quick applications. Just drop some
 
 Core9 is quite organized and has some different parts:
 
-# The Core class set
-# Controllers
-# Models
-# Views
-# Stylesheets
-# JavaScript files
-# Webservice APIs
+  # The Core class set
+  # Controllers
+  # Models
+  # Views
+  # Stylesheets
+  # JavaScript files
+  # Webservice APIs
 
 *Note*: This wiki is WIP. More information to follow.
